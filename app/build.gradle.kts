@@ -21,7 +21,7 @@ android {
                     from(components["release"])
                     groupId = "com.github.andisety" // GitHub username
                     artifactId = "core-example"      // GitHub repo name
-                    version = "1.0.0"                // Tag nanti
+                    version = "1.0.1"                // Tag nanti
                 }
             }
         }
