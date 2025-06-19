@@ -1,5 +1,5 @@
 plugins {
-    id("com.android.application")
+    id("com.android.library")
     id("org.jetbrains.kotlin.android")
     id("maven-publish")
 }
@@ -9,13 +9,22 @@ android {
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "com.core"
         minSdk = 29
-        targetSdk = 35
-        versionCode = 1
-        versionName = "1.0"
+
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+    }
+    afterEvaluate {
+        extensions.configure<PublishingExtension>("publishing") {
+            publications {
+                create<MavenPublication>("release") {
+                    from(components["release"])
+                    groupId = "com.github.andisety" // GitHub username
+                    artifactId = "core-example"      // GitHub repo name
+                    version = "1.0.0"                // Tag nanti
+                }
+            }
+        }
     }
     buildTypes {
         release {
